@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Video llamada</title>
+  </head>
+  <body>
+    <p id="lblID">Mi peer id</p>
+    <div id="conexion">
+      <input id="txtID" type="text" placeholder="Conectarse a" />
+      <button id="btnConectarse">Conectarse</button>
+    </div>
+
+    <div id="conectado" hidden>
+      <h2>Conectado!</h2>
+      <input id="txtMsg" type="text" placeholder="Enviar un mensaje" />
+      <h3>Mensajes recibidos</h3>
+      <p id="lblMensajes"></p>
+      <button id="btnSaludar">Saludar</button>
+      <button id="btnLlamar">Llamar</button>
+
+      <video id="video"></video>
+    </div>
+    <script src="https://unpkg.com/peerjs@1.4.5/dist/peerjs.min.js"></script>
+    <script src="index.js"></script>
+  </body>
+</html>
