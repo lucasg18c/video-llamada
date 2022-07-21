@@ -27,20 +27,13 @@ peer.on("call", (call) => {
     navigator.webkitGetUserMedia ||
     navigator.mozGetUserMedia;
 
-  call.answer();
-  call.on("stream", (stream) => {
-    console.dir(stream);
+  getUserMedia({ video: true, audio: true }, (mediaStream) => {
+    call.answer(mediaStream);
+    call.on("stream", function (remoteStream) {
+      document.getElementById('video').srcObject = remoteStream
+      document.getElementById('video').play()
+    });
   });
-
-  // getUserMedia({ video: true, audio: true }, (mediaStream) => {
-  //   currentUserVideoRef.current.srcObject = mediaStream;
-  //   currentUserVideoRef.current.play();
-  //   call.answer(mediaStream);
-  //   call.on("stream", function (remoteStream) {
-  //     remoteVideoRef.current.srcObject = remoteStream;
-  //     remoteVideoRef.current.play();
-  //   });
-  // });
 });
 
 document.getElementById("btnConectarse").addEventListener("click", () => {
@@ -76,6 +69,8 @@ document.getElementById("btnLlamar").addEventListener("click", () => {
     function (stream) {
       var call = peer.call(conexion.peer, stream);
       call.on("stream", function (remoteStream) {
+        document.getElementById('video').srcObject = remoteStream
+        document.getElementById('video').play()
         // Show stream in some video/canvas element.
       });
     },
